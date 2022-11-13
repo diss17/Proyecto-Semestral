@@ -1,5 +1,5 @@
-# Proyecto-Semestral!
-* Integrantes:
-  - Franchesca Mora
-  - Gaspar Jimenez
-  - Daniel Soto
+# Proyecto Semestral: Tema 5.
+## Integrantes:
+##  - Franchesca Mora
+##  - Gaspar Jimenez
+##  - Daniel Soto
