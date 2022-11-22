@@ -7,6 +7,10 @@ import java.awt.event.KeyListener;
 
 public class PanelPrincipal extends JPanel implements ActionListener,KeyListener{
     public PanelPrincipal(){
+        this.addKeyListener(this);
+        this.setFocusable(true);
+        
+        
 
     }
     public void frenos(){
@@ -32,7 +36,10 @@ public class PanelPrincipal extends JPanel implements ActionListener,KeyListener
     @Override
     public void keyPressed(KeyEvent e) {
         // TODO Auto-generated method stub
-        
+        switch(e.getKeyCode()){
+            case 37 -> System.out.println("xd");
+                
+        }
     }
     @Override
     public void keyReleased(KeyEvent e) {
