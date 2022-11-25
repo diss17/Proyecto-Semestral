@@ -4,20 +4,50 @@ import java.awt.*;
 
 public class AutoPista {
 
-    private int x;
-    private int y;//Coordenada x e y de la autopista
+    public AutoPista() {
 
-    public AutoPista(int x, int y) {
-        this.x = x;
-        this.y = y;
     }
 
     public void paint(Graphics g) {
-        g.setColor(new Color(159, 159, 159));
-        g.fillOval(x, y, 700, 700);
-        g.setColor(new Color(24, 129, 55));
-        g.fillOval(x + 150, y + 150, 400, 400);
-        g.setColor(Color.WHITE);
+        //PAINT CARRETERA.
+        //Carretera RECTAS
+        g.setColor(Color.LIGHT_GRAY);
+        g.fillRect(200, 50, 800, 100);
+
+        g.setColor(Color.LIGHT_GRAY);
+        g.fillRect(300, 200, 700, 100);
+
+        g.setColor(Color.LIGHT_GRAY);
+        g.fillRect(300, 350, 700, 100);
+
+        g.setColor(Color.LIGHT_GRAY);
+        g.fillRect(200, 500, 800, 100);
+
+        g.setColor(Color.LIGHT_GRAY);
+        g.fillRect(100, 150, 100, 350);
+
+        //Linea Salida
+        g.setColor(Color.black);
+        g.fillRect(590, 50, 30, 100);
+        //Linea de Meta
+        g.setColor(Color.white);
+        g.fillRect(560, 50, 30, 100);
+
+        //Carretera CURVAS
+        //(x,y,tamaño ancho,largo,arco de inicio en grd, arco final en grd, tipo de arco)
+        g.setColor(Color.LIGHT_GRAY);
+        g.fillArc(100, 400, 210, 200, -180, 90);
+        g.setColor(Color.LIGHT_GRAY);
+        g.fillArc(100, 50, 210, 200, 180, -90);
+
+        g.setColor(Color.LIGHT_GRAY);
+        g.fillArc(900, 50, 190, 250, 90, -180);
+
+        g.setColor(Color.LIGHT_GRAY);
+        g.fillArc(210, 200, 190, 250, 90, 180);
+        g.setColor(Color.LIGHT_GRAY);
+        g.fillArc(900, 350, 190, 250, 90, -180);
+
     }
 
 }

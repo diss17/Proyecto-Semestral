@@ -13,10 +13,11 @@ public class Ventana extends JFrame implements ActionListener, KeyListener {
     Dibujo dibujo = new Dibujo();
 
     public Ventana() {
-        setSize(800, 800);
+        setSize(1200, 700);
         setLocationRelativeTo(null);
         setDefaultCloseOperation(EXIT_ON_CLOSE);
         this.getContentPane().setBackground(Color.GREEN);
+        this.setResizable(false);
         this.add(dibujo, BorderLayout.CENTER);
         this.setVisible(true);
         this.addKeyListener(this);
