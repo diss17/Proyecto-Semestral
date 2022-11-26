@@ -10,19 +10,20 @@ import javax.swing.*;
 
 public class Ventana extends JFrame implements ActionListener, KeyListener {
 
-    Dibujo dibujo = new Dibujo();
 
     public Ventana() {
-        setSize(1200, 700);
-        setLocationRelativeTo(null);
-        setDefaultCloseOperation(EXIT_ON_CLOSE);
-        this.getContentPane().setBackground(Color.GREEN);
-        this.setResizable(false);
-        this.add(dibujo, BorderLayout.CENTER);
+        this.setTitle("Simulación Auto");
+        PanelPrincipal p = new PanelPrincipal();
+        Botones b = new Botones(p);
+        p.setFocusable(true);
+        this.setLayout(new BorderLayout());
+        super.setSize(p.dim);
+        this.setDefaultCloseOperation(EXIT_ON_CLOSE);
+        this.setExtendedState(MAXIMIZED_BOTH);
+        this.add(p, BorderLayout.CENTER);
+        this.add(b,BorderLayout.SOUTH);
         this.setVisible(true);
-        this.addKeyListener(this);
-        this.setFocusable(true);
-
+        this.setResizable(true);
     }
 
     public void frenos() {
@@ -54,24 +55,7 @@ public class Ventana extends JFrame implements ActionListener, KeyListener {
     @Override
     public void keyPressed(KeyEvent e) {
         // TODO Auto-generated method stub
-        switch (e.getKeyCode()) {
-            case 40 -> {
-                dibujo.MoverAbajo();
-                repaint();
-            }
-            case 38 -> {
-                dibujo.MoverArriba();
-                repaint();
-            }
-            case 39 -> {
-                dibujo.MoverDerecha();
-                repaint();
-            }
-            case 37 -> {
-                dibujo.MoverIzquierda();
-                repaint();
-            }
-        }
+        
     }
 
     @Override

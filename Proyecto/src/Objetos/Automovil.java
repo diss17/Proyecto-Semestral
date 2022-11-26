@@ -12,6 +12,7 @@ public class Automovil {
     private double vel = 0.01, maxVel = 3, angulo = 0, dim;
 
     public Automovil(double x, double y, double dim, Color color){
+        angulo = -3.00;
         this.x = x;
         this.y = y;
         this.color = color;

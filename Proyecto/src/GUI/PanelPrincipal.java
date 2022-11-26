@@ -21,11 +21,12 @@ public class PanelPrincipal extends JPanel implements ActionListener, KeyListene
     private double giro = 0;
 
     public PanelPrincipal() {
+        giro = -3.00;
         addKeyListener(this);
         t = new Timer(10, null);
         a = new Automovil(inicioX - 300, inicioY + 50, dim.width, Color.RED);
         p = new AutoPista();
-        this.setBackground(new Color(24, 129, 55));
+        this.setBackground(Color.CYAN);
         t.addActionListener(this);
         t.start();
     }
@@ -67,12 +68,12 @@ public class PanelPrincipal extends JPanel implements ActionListener, KeyListene
 
     public void paint(Graphics g) {
         super.paint(g);    
-        g.setColor(Color.WHITE);
+        g.setColor(Color.BLACK);
         g.setFont(new Font("Impact", Font.PLAIN, 20));
         g.drawString("Velocidad: ",  (int)(dim.width * 0.91), (int)(dim.height * 0.035));
         g.drawString("Colisiones: ",  (int)(dim.width * 0.91), (int)(dim.height * 0.13));
         g.setFont(new Font("Impact", Font.PLAIN, 25));
-        g.setColor(Color.YELLOW);
+        g.setColor(Color.BLACK);
         if(((int)(a.getVel() * 10)<0)){
             g.drawString("0" + " Km/h", (int)(dim.width * 0.91), (int)(dim.height * 0.085));
         }else{
@@ -82,7 +83,7 @@ public class PanelPrincipal extends JPanel implements ActionListener, KeyListene
             g.drawString(String.valueOf(cont_colisiones), (int)(dim.width * 0.91), (int)(dim.height * 0.17));
         }
         else{
-            a = new Automovil(inicioX - 300, inicioY + 50, dim.width, Color.BLUE);
+            a = new Automovil(inicioX - 300, inicioY + 50, dim.width, Color.RED);
             cont_colisiones++;
         }
         p.paint(g);
@@ -114,7 +115,7 @@ public class PanelPrincipal extends JPanel implements ActionListener, KeyListene
         }
         if(e.getKeyCode() == KeyEvent.VK_UP){
             a.maxvelset(3.0);
-            a.acelerar();
+            a.velset(3.0);
             this.repaint();
         }
         if(e.getKeyCode() == KeyEvent.VK_0){
