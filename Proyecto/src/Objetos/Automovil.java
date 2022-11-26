@@ -125,9 +125,49 @@ public class Automovil {
         g.fillPolygon(foco1);
         g.fillPolygon(foco2);    
     }
+    public void acelerar(){
+        double avanzax = Math.sin(angulo * Math.PI), avanzay = Math.cos(angulo * Math.PI);
+        if (vel < maxVel) vel += 0.01;
+        if (vel > 0){
+           x -= avanzax * vel;
+           y -= avanzay * vel;
+        }   
+    }
+    public void desacelerar(){
+        if (vel > 0.0) vel -= 0.4;  
+    }
+    public void maxvelset(double x){
+        maxVel = x;
+    }
+    public void velset(double x2){
+        vel = x2;
+    }
+    public void setVel(double vel){
+        if (this.vel > vel) this.vel = vel;
+        maxVel = vel;
+    }
+    public double getVel(){
+        return vel;
+    }
+    
+    public void girar(double angulo){
+        this.angulo = angulo;
 
-
+    }
+    public double getX(){
+        return x;
+    }
+    public double getY(){
+        return y;
+    }
+    public Ruedas getR1(){
+        return r1;
+    }
+    public Ruedas getR2(){
+        return r2;
+    }
 }
+
 
 
 
