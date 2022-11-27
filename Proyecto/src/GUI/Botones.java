@@ -27,6 +27,7 @@ class Aceleracion extends JButton implements ActionListener{
         addActionListener(this);
         this.setFocusable(false);
     }
+    @Override
     public void actionPerformed(ActionEvent e) {
         b.pasa_cambios(m);
     }
