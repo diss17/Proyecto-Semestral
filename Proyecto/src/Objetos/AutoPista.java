@@ -6,6 +6,8 @@ public class AutoPista {
 
     Rectangle l1 = new Rectangle();
     Rectangle l2 = new Rectangle();
+    Rectangle meta = new Rectangle();
+    Rectangle salida = new Rectangle();
 
     public AutoPista() {
         l1.x = 200;
@@ -17,21 +19,38 @@ public class AutoPista {
         l2.y = 140;
         l2.width = 820;
         l2.height = 400;
+
+        meta.x = 700;
+        meta.y = 60;
+        meta.width = 30;
+        meta.height = 80;
+
+        salida.x = 670;
+        salida.y = 60;
+        salida.width = 30;
+        salida.height = 80;
     }
 
     public void paint(Graphics g) {
         //PAINT CARRETERA.
         //Carretera RECTAS
         //Pista recta 1
-
-        g.setColor(Color.LIGHT_GRAY);
+        Color pista1 = new Color(102, 115, 100);
+        g.setColor(pista1);
         g.fillRoundRect(l1.x, l1.y, l1.width, l1.height, 90, 90);
 
         //Pista recta 2
-
-        g.setColor(Color.CYAN);
+        Color pista2 = new Color(100, 215, 133);
+        g.setColor(pista2);
         g.fillRoundRect(l2.x, l2.y, l2.width, l2.height, 90, 90);
-////
+
+        //Linea Salida
+        g.setColor(Color.black);
+        g.fillRect(salida.x, salida.y, salida.width, salida.height);
+        //Linea de Meta
+        g.setColor(Color.white);
+        g.fillRect(meta.x, meta.y, meta.width, meta.height);
+        ////
 ////        //Pista recta 3
 ////        g.setColor(Color.LIGHT_GRAY);
 ////        g.fillRect(320, 433, 910, 100);
@@ -45,12 +64,6 @@ public class AutoPista {
 ////        g.fillRect(100, 160, 100, 460);
 ////
 ////        
-////        //Linea Salida
-////        g.setColor(Color.black);
-////        g.fillRect(590, 60, 30, 100);
-////        //Linea de Meta
-////        g.setColor(Color.white);
-////        g.fillRect(560, 60, 30, 100);
 ////
 ////        //Carretera CURVAS
 ////        //(x,y,tamaño ancho,largo,arco de inicio en grd, arco final en grd, tipo de arco)
@@ -74,10 +87,12 @@ public class AutoPista {
 ////        g.fillArc(1120, 433, 210, 286, 90, -180);
 
     }
-    public Rectangle Exterior(){
+
+    public Rectangle Exterior() {
         return l1;
     }
-    public Rectangle Interior(){
+
+    public Rectangle Interior() {
         return l2;
     }
 }

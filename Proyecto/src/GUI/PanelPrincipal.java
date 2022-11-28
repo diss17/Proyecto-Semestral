@@ -1,5 +1,6 @@
 package GUI;
 
+import Fisicas.BoxCollider;
 import Objetos.Automovil;
 import Objetos.AutoPista;
 import javax.swing.Timer;
@@ -14,21 +15,23 @@ import java.awt.event.KeyListener;
 public class PanelPrincipal extends JPanel implements ActionListener, KeyListener {
 
     public Dimension dim = super.getToolkit().getScreenSize();
+    BoxCollider colision = new BoxCollider();
     private Timer t;
     private Automovil a;
     private AutoPista p;
     private String vel;
-    private int inicioX = 800, inicioY = 100; // variara dependiendo de la pista
+    private int inicioX = 700, inicioY = 100; // variara dependiendo de la pista
     private int cont_colisiones = 0;
     private double giro = 0;
 
     public PanelPrincipal() {
-        giro = -3.00;
+        giro = -0.5;
         addKeyListener(this);
         t = new Timer(10, null);
         a = new Automovil(inicioX, inicioY, dim.width - 400, Color.RED);
         p = new AutoPista();
-        this.setBackground(Color.CYAN);
+        Color bck = new Color(67, 155, 52);
+        this.setBackground(bck);
         t.addActionListener(this);
         t.start();
     }
@@ -91,19 +94,18 @@ public class PanelPrincipal extends JPanel implements ActionListener, KeyListene
             g.drawString(String.valueOf(cont_colisiones), (int) (dim.width * 0.91), (int) (dim.height * 0.17));
         } else {
             a = new Automovil(inicioX - 300, inicioY + 50, dim.width - 400, Color.RED);
-            giro = -3.00;
+            giro = -0.5;
             cont_colisiones++;
         }
-
-        if (a.getX() < p.Interior().getMaxX() && a.getX() > p.Interior().getMinX() && a.getY() > p.Interior().getMinY() && a.getY() < p.Interior().getMaxY()) {
+        if (colision.CheckColliderInt(a, p.Interior()) == true) {
             cont_colisiones++;
             a = new Automovil(inicioX, inicioY, dim.width - 400, Color.RED);
-            giro = -3.00;
+            giro = -0.5;
         }
-        if (a.getX() > p.Exterior().getMaxX() || a.getX() < p.Exterior().getMinX() || a.getY() < p.Exterior().getMinY() || a.getY() > p.Exterior().getMaxY()) {
+        if (colision.CheckColliderExt(a, p.Exterior()) == true) {
             cont_colisiones++;
             a = new Automovil(inicioX, inicioY, dim.width - 400, Color.RED);
-            giro = -3.00;
+            giro = -0.5;
         }
         p.paint(g);
         a.paint(g);

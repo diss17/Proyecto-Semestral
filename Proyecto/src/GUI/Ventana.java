@@ -1,8 +1,10 @@
 package GUI;
+
 import java.awt.*;
 import javax.swing.*;
 
-public class Ventana extends JFrame{
+public class Ventana extends JFrame {
+
     public Ventana() {
         this.setTitle("Simulación Auto");
         PanelPrincipal p = new PanelPrincipal();
@@ -13,7 +15,7 @@ public class Ventana extends JFrame{
         this.setDefaultCloseOperation(EXIT_ON_CLOSE);
         this.setExtendedState(MAXIMIZED_BOTH);
         this.add(p, BorderLayout.CENTER);
-        this.add(b,BorderLayout.SOUTH);
+        this.add(b, BorderLayout.SOUTH);
         this.setVisible(true);
         this.setResizable(true);
     }
