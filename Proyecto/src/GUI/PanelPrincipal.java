@@ -3,6 +3,7 @@ import Objetos.Automovil;
 import Objetos.AutoPista;
 import javax.swing.Timer;
 import javax.swing.JPanel;
+
 import java.awt.*;
 import java.awt.event.ActionEvent;
 import java.awt.event.ActionListener;
@@ -24,7 +25,7 @@ public class PanelPrincipal extends JPanel implements ActionListener, KeyListene
         giro = -3.00;
         addKeyListener(this);
         t = new Timer(10, null);
-        a = new Automovil(inicioX - 300, inicioY + 50, dim.width, Color.RED);
+        a = new Automovil(inicioX - 300, inicioY + 50, dim.width-400, Color.RED);
         p = new AutoPista();
         this.setBackground(Color.CYAN);
         t.addActionListener(this);
@@ -36,6 +37,9 @@ public class PanelPrincipal extends JPanel implements ActionListener, KeyListene
         this.repaint();
     }
     public void avanzar(){
+        Sonido Actual;
+        Actual = new Sonido();
+        Actual.ReproducirSonido("src/aceleracion_1.wav");
         a.acelerar();
         this.repaint();
     }
@@ -62,7 +66,7 @@ public class PanelPrincipal extends JPanel implements ActionListener, KeyListene
             case "[3]Velocidad Maxima: 100":
                 a.setVel(10.0);
                 break;
-            default: a.setVel(0.0);    
+            default: a.maxvelset(0.0);  
         }
     }
 
@@ -83,7 +87,8 @@ public class PanelPrincipal extends JPanel implements ActionListener, KeyListene
             g.drawString(String.valueOf(cont_colisiones), (int)(dim.width * 0.91), (int)(dim.height * 0.17));
         }
         else{
-            a = new Automovil(inicioX - 300, inicioY + 50, dim.width, Color.RED);
+            a = new Automovil(inicioX - 300, inicioY + 50, dim.width-400, Color.RED);
+            giro = -3.00;
             cont_colisiones++;
         }
         p.paint(g);
@@ -91,8 +96,10 @@ public class PanelPrincipal extends JPanel implements ActionListener, KeyListene
     }
     @Override
     public void keyTyped(KeyEvent e) {
-        // TODO Auto-generated method stub
-
+        if(e.getKeyCode() == KeyEvent.VK_UP){
+            avanzar();
+            this.repaint();
+        }
     }
 
     @Override
@@ -115,7 +122,7 @@ public class PanelPrincipal extends JPanel implements ActionListener, KeyListene
         }
         if(e.getKeyCode() == KeyEvent.VK_UP){
             a.maxvelset(3.0);
-            a.velset(3.0);
+            a.acelerar();
             this.repaint();
         }
         if(e.getKeyCode() == KeyEvent.VK_0){
@@ -132,12 +139,15 @@ public class PanelPrincipal extends JPanel implements ActionListener, KeyListene
         if(e.getKeyCode() == KeyEvent.VK_3){
             pasa_cambios("[3]Velocidad Maxima: 100");
         }
+        
     }
 
     @Override
     public void keyReleased(KeyEvent e) {
         a.getR1().resetAnguloGiro();
         a.getR2().resetAnguloGiro();
+        pasa_cambios("");
+        a.desacelerar();
         this.repaint();
     }
 

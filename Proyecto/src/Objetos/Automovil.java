@@ -1,7 +1,12 @@
 package Objetos;
 
-import java.awt.*;
+import java.awt.Color;
+import java.awt.Graphics;
+import java.awt.Point;
+import java.awt.Polygon;
+
 import Fisicas.Angulos;
+import GUI.Sonido;
 
 
 public class Automovil {
@@ -10,6 +15,7 @@ public class Automovil {
     private Color color;
     private Ruedas r1,r2,r3,r4;
     private double vel = 0.01, maxVel = 3, angulo = 0, dim;
+    private Sonido actual;
 
     public Automovil(double x, double y, double dim, Color color){
         angulo = -3.00;
@@ -135,7 +141,7 @@ public class Automovil {
         }   
     }
     public void desacelerar(){
-        if (vel > 0.0) vel -= 0.4;  
+        if (vel > 0.0) vel -= 0.1;  
     }
     public void maxvelset(double x){
         maxVel = x;
