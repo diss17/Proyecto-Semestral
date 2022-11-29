@@ -27,7 +27,8 @@ public class InGame extends JPanel implements ActionListener, KeyListener {
     private int cont_vueltas = 0;
     private double giro = 0;
     JPanel panel;
-    boolean autoenmeta;
+    boolean autoenmeta, derecha, izquierda, frenar, primera, segunda, tercera;
+
     public InGame() {
         giro = -0.5;
 //        addKeyListener(this);
@@ -40,7 +41,6 @@ public class InGame extends JPanel implements ActionListener, KeyListener {
         t.start();
         super.setSize(dim);
     }
-    
 
     public void frenos() {
         a.desacelerar();
@@ -56,34 +56,29 @@ public class InGame extends JPanel implements ActionListener, KeyListener {
     }
 
     public void derecha() {
-        giro -= 0.02;
+        giro -= 0.002;
         a.girar(giro);
         this.repaint();
     }
 
-    public void izquieda() {
-        giro += 0.02;
+    public void izquierda() {
+        giro += 0.002;
         a.girar(giro);
         this.repaint();
     }
 
-    public void pasa_cambios(String s) {
-        switch (s) {
-            case "[1]Velocidad Maxima: 30":
-                System.out.println("a");
-                a.setVel(3.0);
-                break;
-            case "[2]Velocidad Maxima: 50":
-                a.setVel(5.0);
-                break;
-            case "[3]Velocidad Maxima: 100":
-                a.setVel(10.0);
-                break;
-            default:
-                a.maxvelset(0.0);
-        }
-    }
-
+//    public void pasa_primera(String s) {
+//        switch (s) {
+//            case "[1]Velocidad Maxima: 30" ->
+//                a.maxvelset(3.0);
+//            case "[2]Velocidad Maxima: 50" ->
+//                a.maxvelset(5.0);
+//            case "[3]Velocidad Maxima: 100" ->
+//                a.setVel(10.0);
+//            default ->
+//                a.maxvelset(0.0);
+//        }
+//    }
     @Override
     public void paint(Graphics g) {
         super.paint(g);
@@ -94,7 +89,8 @@ public class InGame extends JPanel implements ActionListener, KeyListener {
         g.setFont(new Font("Impact", Font.PLAIN, 20));
         g.setColor(Color.BLACK);
         g.drawString("Colisiones: ", (int) (dim.width * 0.91), (int) (dim.height * 0.13));
-
+        g.drawString(String.valueOf(cont_vueltas), (int) (dim.width * 0.91), (int) (dim.height * 0.25));
+        
         g.setFont(new Font("Impact", Font.PLAIN, 20));
         g.setColor(Color.BLACK);
         g.drawString("Vueltas: ", (int) (dim.width * 0.91), (int) (dim.height * 0.21));
@@ -124,15 +120,40 @@ public class InGame extends JPanel implements ActionListener, KeyListener {
         if (colision.CheckColliderMeta(a, p.Meta()) == true && !autoenmeta) {
             autoenmeta = true;
             cont_vueltas++;
-//            a = new Automovil(inicioX, inicioY, dim.width - 400, Color.RED);
             giro = -0.5;
-        }if(colision.CheckColliderMeta(a, p.Meta()) == false) {
-            autoenmeta = false;
-            //g.drawString(String.valueOf(cont_vueltas), (int) (dim.width * 0.91), (int) (dim.height * 0.25));
         }
-        g.drawString(String.valueOf(cont_vueltas), (int) (dim.width * 0.91), (int) (dim.height * 0.25));
+        if (colision.CheckColliderMeta(a, p.Meta()) == false) {
+            autoenmeta = false;
+        }
+
         p.paint(g);
         a.paint(g);
+
+        if (derecha) {
+            derecha();
+            a.getR1().rotarDer(0.01);
+            a.getR2().rotarDer(0.01);
+            this.repaint();
+        }
+        if (izquierda) {
+            izquierda();
+            a.getR1().rotarIzq(0.01);
+            a.getR2().rotarIzq(0.01);
+            this.repaint();
+        }
+        if (frenar) {
+            frenos();
+            this.repaint();
+        }
+        if (primera) {
+            a.maxvelset(3.0);
+        }
+        if (segunda) {
+            a.maxvelset(5.0);
+        }
+        if (tercera) {
+            a.maxvelset(10.0);
+        }
     }
 
     @Override
@@ -145,41 +166,41 @@ public class InGame extends JPanel implements ActionListener, KeyListener {
 
     @Override
     public void keyPressed(KeyEvent e) {
-        if (e.getKeyCode() == KeyEvent.VK_RIGHT) {
-            derecha();
-            a.getR1().rotarDer(0.01);
-            a.getR2().rotarDer(0.01);
-            this.repaint();
+        switch (e.getKeyCode()) {
+            case KeyEvent.VK_RIGHT:
+                derecha = true;
+                break;
+            case KeyEvent.VK_LEFT:
+                izquierda = true;
+                break;
+            case KeyEvent.VK_DOWN:
+                frenar = true;
+                break;
+            case KeyEvent.VK_UP:
+                a.maxvelset(3.0);
+                a.acelerar();
+                this.repaint();
+                break;
+            case KeyEvent.VK_1:
+                primera = true;
+                break;
+            case KeyEvent.VK_2:
+                segunda = true;
+                break;
+            case KeyEvent.VK_3:
+                tercera = true;
+                break;
         }
-        if (e.getKeyCode() == KeyEvent.VK_LEFT) {
-            izquieda();
-            a.getR1().rotarIzq(0.01);
-            a.getR2().rotarIzq(0.01);
-            this.repaint();
-        }
-        if (e.getKeyCode() == KeyEvent.VK_DOWN) {
-            frenos();
-            this.repaint();
-        }
-        if (e.getKeyCode() == KeyEvent.VK_UP) {
-            a.maxvelset(3.0);
-            a.acelerar();
-            this.repaint();
-        }
-        if (e.getKeyCode() == KeyEvent.VK_0) {
-            a.velset(0.0);
-            a.maxvelset(0.0);
-            this.repaint();
-        }
-        if (e.getKeyCode() == KeyEvent.VK_1) {
-            pasa_cambios("[1]Velocidad Maxima: 30");
-        }
-        if (e.getKeyCode() == KeyEvent.VK_2) {
-            pasa_cambios("[2]Velocidad Maxima: 50");
-        }
-        if (e.getKeyCode() == KeyEvent.VK_3) {
-            pasa_cambios("[3]Velocidad Maxima: 100");
-        }
+//        if (e.getKeyCode() == KeyEvent.VK_1) {
+//            pasa_primera("[1]Velocidad Maxima: 30");
+//        }
+//        if (e.getKeyCode() == KeyEvent.VK_2) {
+//            pasa_primera("[2]Velocidad Maxima: 50");
+//            a.setVel(5.0);
+//        }
+//        if (e.getKeyCode() == KeyEvent.VK_3) {
+//            pasa_primera("[3]Velocidad Maxima: 100");
+//        }
 
     }
 
@@ -187,9 +208,28 @@ public class InGame extends JPanel implements ActionListener, KeyListener {
     public void keyReleased(KeyEvent e) {
         a.getR1().resetAnguloGiro();
         a.getR2().resetAnguloGiro();
-        pasa_cambios("");
         a.desacelerar();
         this.repaint();
+        switch (e.getKeyCode()) {
+            case KeyEvent.VK_RIGHT:
+                derecha = false;
+                break;
+            case KeyEvent.VK_LEFT:
+                izquierda = false;
+                break;
+            case KeyEvent.VK_DOWN:
+                frenar = false;
+                break;
+            case KeyEvent.VK_1:
+                primera = false;
+                break;
+            case KeyEvent.VK_2:
+                segunda = false;
+                break;
+            case KeyEvent.VK_3:
+                tercera = false;
+                break;
+        }
     }
 
     @Override

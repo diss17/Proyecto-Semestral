@@ -137,7 +137,7 @@ public class Automovil {
     public void acelerar() {
         double avanzax = Math.sin(angulo * Math.PI), avanzay = Math.cos(angulo * Math.PI);
         if (vel < maxVel) {
-            vel += 0.01;
+            vel += 0.006;
         }
         if (vel > 0) {
             x -= avanzax * vel;
@@ -147,7 +147,7 @@ public class Automovil {
 
     public void desacelerar() {
         if (vel > 0.0) {
-            vel -= 0.1;
+            vel -= 0.001;
         }
     }
 
