@@ -6,15 +6,12 @@ import javax.swing.*;
 public class Ventana extends JFrame {
 
     public Ventana() {
+        InGame p=new InGame();
+        MenuStatus m=new MenuStatus(this);
         this.setTitle("Simulación Auto");
-        PanelPrincipal p = new PanelPrincipal();
-        Botones b = new Botones(p);
         p.setFocusable(true);
-        this.setLayout(new BorderLayout());
-        super.setSize(p.dim);
+        this.setSize(1200, 700);
         this.setDefaultCloseOperation(EXIT_ON_CLOSE);
-        this.add(p, BorderLayout.CENTER);
-        this.add(b, BorderLayout.SOUTH);
         this.setLocationRelativeTo(null);
         this.setVisible(true);
         this.setResizable(true);

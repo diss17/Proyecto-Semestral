@@ -7,9 +7,9 @@ import javax.swing.JButton;
 public class Aceleracion extends JButton implements ActionListener {
 
     private String m;
-    private PanelPrincipal b;
+    private InGame b;
 
-    public Aceleracion(String m, PanelPrincipal b) {
+    public Aceleracion(String m, InGame b) {
         super(m);
         this.b = b;
         this.m = m;

@@ -1,18 +1,20 @@
 package GUI;
 
 import Fisicas.BoxCollider;
-import Objetos.Automovil;
 import Objetos.AutoPista;
-import javax.swing.Timer;
-import javax.swing.JPanel;
-
-import java.awt.*;
+import Objetos.Automovil;
+import java.awt.Color;
+import java.awt.Dimension;
+import java.awt.Font;
+import java.awt.Graphics;
 import java.awt.event.ActionEvent;
 import java.awt.event.ActionListener;
 import java.awt.event.KeyEvent;
 import java.awt.event.KeyListener;
+import javax.swing.JPanel;
+import javax.swing.Timer;
 
-public class PanelPrincipal extends JPanel implements ActionListener, KeyListener {
+public class InGame extends JPanel implements ActionListener, KeyListener {
 
     public Dimension dim = new Dimension(1200, 700);
     BoxCollider colision = new BoxCollider();
@@ -24,8 +26,8 @@ public class PanelPrincipal extends JPanel implements ActionListener, KeyListene
     private int cont_colisiones = 0;
     private int cont_vueltas = 0;
     private double giro = 0;
-
-    public PanelPrincipal() {
+    JPanel panel;
+    public InGame() {
         giro = -0.5;
         addKeyListener(this);
         t = new Timer(10, null);
@@ -35,7 +37,9 @@ public class PanelPrincipal extends JPanel implements ActionListener, KeyListene
         this.setBackground(bck);
         t.addActionListener(this);
         t.start();
+        super.setSize(dim);
     }
+    
 
     public void frenos() {
         a.desacelerar();
