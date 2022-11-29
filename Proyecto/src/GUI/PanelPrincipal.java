@@ -14,14 +14,15 @@ import java.awt.event.KeyListener;
 
 public class PanelPrincipal extends JPanel implements ActionListener, KeyListener {
 
-    public Dimension dim = super.getToolkit().getScreenSize();
+    public Dimension dim = new Dimension(1200, 700);
     BoxCollider colision = new BoxCollider();
     private Timer t;
     private Automovil a;
     private AutoPista p;
     private String vel;
-    private int inicioX = 700, inicioY = 100; // variara dependiendo de la pista
+    private int inicioX = 585, inicioY = 80; // variara dependiendo de la pista
     private int cont_colisiones = 0;
+    private int cont_vueltas = 0;
     private double giro = 0;
 
     public PanelPrincipal() {
@@ -77,14 +78,21 @@ public class PanelPrincipal extends JPanel implements ActionListener, KeyListene
         }
     }
 
+    @Override
     public void paint(Graphics g) {
         super.paint(g);
         g.setColor(Color.BLACK);
         g.setFont(new Font("Impact", Font.PLAIN, 20));
         g.drawString("Velocidad: ", (int) (dim.width * 0.91), (int) (dim.height * 0.035));
-        g.drawString("Colisiones: ", (int) (dim.width * 0.91), (int) (dim.height * 0.13));
-        g.setFont(new Font("Impact", Font.PLAIN, 25));
+
+        g.setFont(new Font("Impact", Font.PLAIN, 20));
         g.setColor(Color.BLACK);
+        g.drawString("Colisiones: ", (int) (dim.width * 0.91), (int) (dim.height * 0.13));
+
+        g.setFont(new Font("Impact", Font.PLAIN, 20));
+        g.setColor(Color.BLACK);
+        g.drawString("Vueltas: ", (int) (dim.width * 0.91), (int) (dim.height * 0.21));
+
         if (((int) (a.getVel() * 10) < 0)) {
             g.drawString("0" + " Km/h", (int) (dim.width * 0.91), (int) (dim.height * 0.085));
         } else {
@@ -106,6 +114,13 @@ public class PanelPrincipal extends JPanel implements ActionListener, KeyListene
             cont_colisiones++;
             a = new Automovil(inicioX, inicioY, dim.width - 400, Color.RED);
             giro = -0.5;
+        }
+        if (colision.CheckColliderMeta(a, p.Meta()) == true) {
+            cont_vueltas++;
+            a = new Automovil(inicioX, inicioY, dim.width - 400, Color.RED);
+            giro = -0.5;
+        } else {
+            g.drawString(String.valueOf(cont_vueltas), (int) (dim.width * 0.91), (int) (dim.height * 0.25));
         }
         p.paint(g);
         a.paint(g);
