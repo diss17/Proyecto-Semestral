@@ -6,7 +6,7 @@ import javax.swing.*;
 public class Ventana extends JFrame {
 
     public Ventana() {
-        MenuStatus m=new MenuStatus(this);
+        MenuStatus m = new MenuStatus(this);
         this.setTitle("Simulación Auto");
         m.setFocusable(true);
         this.setSize(1200, 700);

@@ -27,6 +27,7 @@ public class InGame extends JPanel implements ActionListener, KeyListener {
     private int cont_vueltas = 0;
     private double giro = 0;
     JPanel panel;
+    boolean autoenmeta;
     public InGame() {
         giro = -0.5;
 //        addKeyListener(this);
@@ -120,13 +121,16 @@ public class InGame extends JPanel implements ActionListener, KeyListener {
             a = new Automovil(inicioX, inicioY, dim.width - 400, Color.RED);
             giro = -0.5;
         }
-        if (colision.CheckColliderMeta(a, p.Meta()) == true) {
+        if (colision.CheckColliderMeta(a, p.Meta()) == true && !autoenmeta) {
+            autoenmeta = true;
             cont_vueltas++;
-            a = new Automovil(inicioX, inicioY, dim.width - 400, Color.RED);
+//            a = new Automovil(inicioX, inicioY, dim.width - 400, Color.RED);
             giro = -0.5;
-        } else {
-            g.drawString(String.valueOf(cont_vueltas), (int) (dim.width * 0.91), (int) (dim.height * 0.25));
+        }if(colision.CheckColliderMeta(a, p.Meta()) == false) {
+            autoenmeta = false;
+            //g.drawString(String.valueOf(cont_vueltas), (int) (dim.width * 0.91), (int) (dim.height * 0.25));
         }
+        g.drawString(String.valueOf(cont_vueltas), (int) (dim.width * 0.91), (int) (dim.height * 0.25));
         p.paint(g);
         a.paint(g);
     }

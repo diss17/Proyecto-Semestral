@@ -19,7 +19,7 @@ public class BoxCollider {
 
     public boolean CheckColliderMeta(Automovil a, Rectangle aux) {
         rectangulo = aux;
-        return a.getX() < rectangulo.getMaxX() && a.getX() > rectangulo.getMinX() && a.getY() > rectangulo.getMinY() && a.getY() < rectangulo.getMaxY();
+        return a.getX() < rectangulo.getMaxX()  && a.getX() > rectangulo.getMinX() && a.getY() > rectangulo.getMinY() && a.getY() < rectangulo.getMaxY();
     }
 
 }
