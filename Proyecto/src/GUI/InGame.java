@@ -29,7 +29,7 @@ public class InGame extends JPanel implements ActionListener, KeyListener {
     JPanel panel;
     public InGame() {
         giro = -0.5;
-        addKeyListener(this);
+//        addKeyListener(this);
         t = new Timer(10, null);
         a = new Automovil(inicioX, inicioY, dim.width - 400, Color.RED);
         p = new AutoPista();
@@ -69,6 +69,7 @@ public class InGame extends JPanel implements ActionListener, KeyListener {
     public void pasa_cambios(String s) {
         switch (s) {
             case "[1]Velocidad Maxima: 30":
+                System.out.println("a");
                 a.setVel(3.0);
                 break;
             case "[2]Velocidad Maxima: 50":
