@@ -13,7 +13,7 @@ public class Automovil {
     private double x, y;
     private Color color;
     private Ruedas r1, r2, r3, r4;
-    private double vel = 0.01, maxVel = 3, angulo = 0, dim;
+    private double vel = 0, maxVel = 0, angulo = 0, dim;
     private Sonido actual;
 
     public Automovil(double x, double y, double dim, Color color) {
@@ -137,7 +137,7 @@ public class Automovil {
     public void acelerar() {
         double avanzax = Math.sin(angulo * Math.PI), avanzay = Math.cos(angulo * Math.PI);
         if (vel < maxVel) {
-            vel += 0.006;
+            vel += 0.007;
         }
         if (vel > 0) {
             x -= avanzax * vel;
@@ -147,7 +147,7 @@ public class Automovil {
 
     public void desacelerar() {
         if (vel > 0.0) {
-            vel -= 0.003;
+            vel -= 0.004;
         }
     }
 

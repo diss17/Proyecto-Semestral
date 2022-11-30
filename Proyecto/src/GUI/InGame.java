@@ -56,15 +56,25 @@ public class InGame extends JPanel implements ActionListener, KeyListener {
     }
 
     public void derecha() {
-        giro -= 0.002;
-        a.girar(giro);
-        this.repaint();
+        if (a.getVel() > 0) {
+            giro -= 0.002;
+            a.girar(giro);
+            this.repaint();
+        } else {
+            giro -= 0;
+        }
+
     }
 
     public void izquierda() {
-        giro += 0.002;
-        a.girar(giro);
-        this.repaint();
+        if (a.getVel() > 0) {
+            giro += 0.002;
+            a.girar(giro);
+            this.repaint();
+        } else {
+            giro += 0;
+        }
+
     }
 
 //    public void pasa_primera(String s) {
@@ -154,14 +164,11 @@ public class InGame extends JPanel implements ActionListener, KeyListener {
         if (tercera) {
             a.maxvelset(10.0);
         }
+        a.desacelerar();
     }
 
     @Override
     public void keyTyped(KeyEvent e) {
-        if (e.getKeyCode() == KeyEvent.VK_UP) {
-            avanzar();
-            this.repaint();
-        }
     }
 
     @Override
