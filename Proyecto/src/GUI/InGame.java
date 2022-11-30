@@ -90,7 +90,7 @@ public class InGame extends JPanel implements ActionListener, KeyListener {
         g.setColor(Color.BLACK);
         g.drawString("Colisiones: ", (int) (dim.width * 0.91), (int) (dim.height * 0.13));
         g.drawString(String.valueOf(cont_vueltas), (int) (dim.width * 0.91), (int) (dim.height * 0.25));
-        
+
         g.setFont(new Font("Impact", Font.PLAIN, 20));
         g.setColor(Color.BLACK);
         g.drawString("Vueltas: ", (int) (dim.width * 0.91), (int) (dim.height * 0.21));
@@ -208,7 +208,6 @@ public class InGame extends JPanel implements ActionListener, KeyListener {
     public void keyReleased(KeyEvent e) {
         a.getR1().resetAnguloGiro();
         a.getR2().resetAnguloGiro();
-        a.desacelerar();
         this.repaint();
         switch (e.getKeyCode()) {
             case KeyEvent.VK_RIGHT:
@@ -219,6 +218,7 @@ public class InGame extends JPanel implements ActionListener, KeyListener {
                 break;
             case KeyEvent.VK_DOWN:
                 frenar = false;
+                frenos();
                 break;
             case KeyEvent.VK_1:
                 primera = false;

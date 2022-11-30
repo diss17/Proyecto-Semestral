@@ -29,8 +29,6 @@ public class MenuStatus extends JPanel implements ActionListener {
         fondoMenu();
         ventana.add(panel);
         ventana.addKeyListener(juego);
-        Botones buttons = new Botones(juego);
-        panel.add(buttons);
 
     }
 

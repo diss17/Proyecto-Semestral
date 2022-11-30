@@ -147,7 +147,7 @@ public class Automovil {
 
     public void desacelerar() {
         if (vel > 0.0) {
-            vel -= 0.001;
+            vel -= 0.003;
         }
     }
 
