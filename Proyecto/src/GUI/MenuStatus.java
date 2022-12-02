@@ -19,7 +19,7 @@ public class MenuStatus extends JPanel implements ActionListener {
     JLabel fondo, titulo;
     CardLayout c = new CardLayout();
     InGame juego = new InGame();
-    JButton Iniciar, Salir,Help;
+    JButton Iniciar, Salir, Help;
     JFrame ventana;
 
     public MenuStatus(JFrame ventana) {
@@ -45,18 +45,13 @@ public class MenuStatus extends JPanel implements ActionListener {
 
     private void botonesMenu() {
 
-       //BOTON-PLAY
+        //BOTON-PLAY
         Iniciar = new JButton();
-        Iniciar.setBounds(530, 400, 120, 50);
-        //Le damos fondo al boton INICIAR:
-        ImageIcon botonIniciar = new ImageIcon("boton_fondo.jpg");
-        Iniciar.setIcon(new ImageIcon(botonIniciar.getImage().getScaledInstance(135, 50, Image.SCALE_SMOOTH)));
-        Iniciar.setOpaque(true);
-        Iniciar.setContentAreaFilled(false);
+        Iniciar.setBounds(530, 360, 120, 50);
+        Iniciar.setBackground(Color.BLACK);
         Iniciar.setBorderPainted(true);
         Iniciar.setBorder(new LineBorder(Color.WHITE));
         Iniciar.setEnabled(true);
-        //Le damos texto al boton INICIAR: 
         Iniciar.setText("PLAY");
         Iniciar.setForeground(Color.WHITE);
         Iniciar.setFont(new Font("Impact", Font.PLAIN, 18));
@@ -66,36 +61,30 @@ public class MenuStatus extends JPanel implements ActionListener {
 
         //BOTON-EXIT
         Salir = new JButton();
-        Salir.setBounds(530, 470, 120, 50);
-        //Le damos fondo al boton SALIR:
-        ImageIcon botonSalir = new ImageIcon("boton_fondo.jpg");
-        Salir.setIcon(new ImageIcon(botonSalir.getImage().getScaledInstance(135, 50, Image.SCALE_SMOOTH)));
+        Salir.setBounds(530, 430, 120, 50);
+        Salir.setBackground(Color.BLACK);
         Salir.setOpaque(true);
-        Salir.setContentAreaFilled(false);
         Salir.setBorderPainted(true);
         Salir.setBorder(new LineBorder(Color.WHITE));
         Salir.setEnabled(true);
-        //Le damos texto al boton EXIT;
         Salir.setText("EXIT");
         Salir.setFont(new Font("Impact", Font.PLAIN, 18));
+        Salir.setForeground(Color.WHITE);
         Salir.addActionListener(this);
         Salir.setFocusable(false);
         menu.add(Salir);
 
         //BOTON-HELP
         Help = new JButton();
-        Help.setBounds(530, 540, 120, 50);
-        //Le damos fondo al boton HELP:
-        ImageIcon botonHelp = new ImageIcon("boton_fondo.jpg");
-        Help.setIcon(new ImageIcon(botonHelp.getImage().getScaledInstance(135, 50, Image.SCALE_SMOOTH)));
+        Help.setBounds(530, 500, 120, 50);
+        Help.setBackground(Color.BLACK);
         Help.setOpaque(true);
-        Help.setContentAreaFilled(false);
         Help.setBorderPainted(true);
         Help.setBorder(new LineBorder(Color.WHITE));
         Help.setEnabled(true);
-        //Le damos texto al boton HELP:
         Help.setText("HELP");
         Help.setFont(new Font("Impact", Font.PLAIN, 18));
+        Help.setForeground(Color.WHITE);
         Help.addActionListener(this);
         Help.setFocusable(false);
         menu.add(Help);
@@ -118,8 +107,6 @@ public class MenuStatus extends JPanel implements ActionListener {
         fondo.setOpaque(false);
         fondo.setBounds(-10, -20, 1200, 700);
         menu.add(fondo);
-
-        
 
     }
 
