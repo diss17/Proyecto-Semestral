@@ -19,7 +19,7 @@ public class MenuStatus extends JPanel implements ActionListener {
     JLabel fondo, titulo;
     CardLayout c = new CardLayout();
     InGame juego = new InGame();
-    JButton Iniciar, Salir, Help;
+    JButton Iniciar, Salir;
     JFrame ventana;
 
     public MenuStatus(JFrame ventana) {
@@ -73,22 +73,6 @@ public class MenuStatus extends JPanel implements ActionListener {
         Salir.addActionListener(this);
         Salir.setFocusable(false);
         menu.add(Salir);
-
-        //BOTON-HELP
-        Help = new JButton();
-        Help.setBounds(530, 500, 120, 50);
-        Help.setBackground(Color.BLACK);
-        Help.setOpaque(true);
-        Help.setBorderPainted(true);
-        Help.setBorder(new LineBorder(Color.WHITE));
-        Help.setEnabled(true);
-        Help.setText("HELP");
-        Help.setFont(new Font("Impact", Font.PLAIN, 18));
-        Help.setForeground(Color.WHITE);
-        Help.addActionListener(this);
-        Help.setFocusable(false);
-        menu.add(Help);
-
     }
 
     private void fondoMenu() {

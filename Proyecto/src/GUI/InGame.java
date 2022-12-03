@@ -11,6 +11,7 @@ import java.awt.event.ActionEvent;
 import java.awt.event.ActionListener;
 import java.awt.event.KeyEvent;
 import java.awt.event.KeyListener;
+import javax.swing.ImageIcon;
 import javax.swing.JPanel;
 import javax.swing.Timer;
 
@@ -165,6 +166,28 @@ public class InGame extends JPanel implements ActionListener, KeyListener {
             a.maxvelset(10.0);
         }
         a.desacelerar();
+
+        //Botones del movimiento del auto.
+        ImageIcon botones = new ImageIcon("fondo_buttons.jpeg");
+        g.drawImage(botones.getImage(), 200, 140, 160, 340, null);
+
+        //Instrucciones del movimiento del auto.
+        g.setFont(new Font("Impact", Font.PLAIN, 20));
+        g.setColor(Color.BLACK);
+        g.drawString("AVANZAR",320,205);
+        
+        g.setFont(new Font("Impact", Font.PLAIN, 20));
+        g.setColor(Color.BLACK);
+        g.drawString("FRENAR",320,280);
+        
+        g.setFont(new Font("Impact", Font.PLAIN, 20));
+        g.setColor(Color.BLACK);
+        g.drawString("GIRAR A LA IZQUIERDA",320,350);
+        
+        g.setFont(new Font("Impact", Font.PLAIN, 20));
+        g.setColor(Color.BLACK);
+        g.drawString("GIRAR A LA DERECHA",320,425);
+
     }
 
     @Override
