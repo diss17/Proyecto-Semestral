@@ -1,12 +1,14 @@
 package Objetos;
 
+
+
 import java.awt.Color;
 import java.awt.Graphics;
 import java.awt.Point;
 import java.awt.Polygon;
-
 import Fisicas.Angulos;
-import GUI.Sonido;
+import javax.sound.sampled.Clip;
+
 
 public class Automovil {
 
@@ -14,7 +16,7 @@ public class Automovil {
     private Color color;
     private Ruedas r1, r2, r3, r4;
     private double vel = 0, maxVel = 0, angulo = 0, dim;
-    private Sonido actual;
+ 
 
     public Automovil(double x, double y, double dim, Color color) {
         angulo = -0.5;
@@ -47,7 +49,7 @@ public class Automovil {
         r3.paint(g);
         r4.paint(g);
         g.setColor(color);
-        
+
         Polygon car = new Polygon();
         Point a = Angulos.generaPunto(or, dim / 45.17, angulo + 0.34388);
         Point b = Angulos.generaPunto(or, dim / 45.17, angulo + 0.65611);
@@ -134,7 +136,9 @@ public class Automovil {
         g.fillPolygon(foco2);
     }
 
+
     public void acelerar() {
+        
         double avanzax = Math.sin(angulo * Math.PI), avanzay = Math.cos(angulo * Math.PI);
         if (vel < maxVel) {
             vel += 0.009;
@@ -143,6 +147,8 @@ public class Automovil {
             x -= avanzax * vel;
             y -= avanzay * vel;
         }
+        
+        
     }
 
     public void desacelerar() {

@@ -30,6 +30,7 @@ public class InGame extends JPanel implements ActionListener, KeyListener {
     JPanel panel;
     boolean autoenmeta, derecha, izquierda, frenar, primera, segunda, tercera;
 
+
     public InGame() {
         giro = -0.5;
 //        addKeyListener(this);
@@ -48,13 +49,6 @@ public class InGame extends JPanel implements ActionListener, KeyListener {
         this.repaint();
     }
 
-    public void avanzar() {
-        Sonido Actual;
-        Actual = new Sonido();
-        Actual.ReproducirSonido("src/aceleracion_1.wav");
-        a.acelerar();
-        this.repaint();
-    }
 
     public void derecha() {
         if (a.getVel() > 0) {
@@ -189,11 +183,13 @@ public class InGame extends JPanel implements ActionListener, KeyListener {
         g.drawString("GIRAR A LA DERECHA",320,425);
 
     }
+ 
 
     @Override
     public void keyTyped(KeyEvent e) {
     }
-
+    
+    
     @Override
     public void keyPressed(KeyEvent e) {
         switch (e.getKeyCode()) {

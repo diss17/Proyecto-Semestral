@@ -12,6 +12,11 @@ import javax.swing.JFrame;
 import javax.swing.JLabel;
 import javax.swing.JPanel;
 import javax.swing.border.LineBorder;
+import javax.sound.sampled.AudioSystem;
+import javax.sound.sampled.Clip;
+import java.io.File;
+import javax.sound.sampled.FloatControl;
+
 
 public class MenuStatus extends JPanel implements ActionListener {
 
@@ -21,6 +26,9 @@ public class MenuStatus extends JPanel implements ActionListener {
     InGame juego = new InGame();
     JButton Iniciar, Salir;
     JFrame ventana;
+    public static Clip musicMenu;
+    public static Clip musicGame;
+    
 
     public MenuStatus(JFrame ventana) {
         this.ventana = ventana;
@@ -29,6 +37,7 @@ public class MenuStatus extends JPanel implements ActionListener {
         fondoMenu();
         ventana.add(panel);
         ventana.addKeyListener(juego);
+        musicInGame();
 
     }
 
@@ -93,6 +102,23 @@ public class MenuStatus extends JPanel implements ActionListener {
         menu.add(fondo);
 
     }
+    private void musicInGame(){
+        try{
+            musicMenu= AudioSystem.getClip();
+            musicMenu.open(AudioSystem.getAudioInputStream(new File("GTA_Menu(1).wav")));
+            musicMenu.loop(-1);
+            
+            musicGame=AudioSystem.getClip();
+            musicGame.open(AudioSystem.getAudioInputStream(new File("NFS_InGame.wav")));
+            
+            
+            
+        } catch(Exception e){
+            System.out.println("Audio malo"+e);
+        }
+            
+            
+        }
 
     @Override
     public void actionPerformed(ActionEvent e) {
@@ -102,6 +128,9 @@ public class MenuStatus extends JPanel implements ActionListener {
             c.show(panel, "2");
             juego.requestFocus();
             juego.setVisible(true);
+            musicMenu.stop();
+            musicGame.setMicrosecondPosition(0);
+            musicGame.loop(-1);
 
         }
         if (e.getSource() == Salir) {
