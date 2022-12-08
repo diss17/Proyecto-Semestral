@@ -1,8 +1,14 @@
 package GUI;
 
-import java.awt.*;
 import javax.swing.*;
 
+/**
+ * Clase que crea y da propiedades a la ventana principal
+ *
+ * @author Gaspar
+ * @author Franchesca
+ * @author Daniel
+ */
 public class Ventana extends JFrame {
 
     public Ventana() {

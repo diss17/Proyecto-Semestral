@@ -15,6 +15,14 @@ import javax.swing.ImageIcon;
 import javax.swing.JPanel;
 import javax.swing.Timer;
 
+/**
+ * Clase utilizada para controlar y dibujar todo lo que ocurre dentro de nuestro
+ * juego
+ *
+ * @author Franchesca
+ * @author Daniel
+ * @author Gaspar
+ */
 public class InGame extends JPanel implements ActionListener, KeyListener {
 
     public Dimension dim = new Dimension(1200, 700);
@@ -22,18 +30,19 @@ public class InGame extends JPanel implements ActionListener, KeyListener {
     private Timer t;
     private Automovil a;
     private AutoPista p;
-    private String vel;
-    private int inicioX = 585, inicioY = 80; // variara dependiendo de la pista
+    private final int inicioX = 585; // variara dependiendo de la pista
+    private final int inicioY = 80; // variara dependiendo de la pista
     private int cont_colisiones = 0;
     private int cont_vueltas = 0;
     private double giro = 0;
-    JPanel panel;
     boolean autoenmeta, derecha, izquierda, frenar, primera, segunda, tercera;
 
-
+    /**
+     * Clase construcor el cual se encarga de inicilizar e instanciar los
+     * objetos utilizado dentro de juego
+     */
     public InGame() {
-        giro = -0.5;
-//        addKeyListener(this);
+        giro = -0.5; 
         t = new Timer(10, null);
         a = new Automovil(inicioX, inicioY, dim.width - 400, Color.RED);
         p = new AutoPista();
@@ -44,12 +53,21 @@ public class InGame extends JPanel implements ActionListener, KeyListener {
         super.setSize(dim);
     }
 
+    /**
+     * Metodo de tipo void que es usado para frenar el auto mediante el llamado
+     * del metodo "desacelerar", perteneciente a clase Automovil
+     */
     public void frenos() {
         a.desacelerar();
         this.repaint();
     }
 
-
+    /**
+     * Metodo de tipo void el cual mediante el uso de condicionales, habilita el
+     * giro del auto a la derecha si la velocidad del mismo es mayor a 0
+     * utilizando el metodo "girar" y "getVel" perteneciente a clase Automovil,
+     * caso contrario no lo permite
+     */
     public void derecha() {
         if (a.getVel() > 0) {
             giro -= 0.002;
@@ -61,6 +79,12 @@ public class InGame extends JPanel implements ActionListener, KeyListener {
 
     }
 
+    /**
+     * Metodo de tipo void el cual mediante el uso de condicionales, habilita el
+     * giro del auto a la izquierda si la velocidad del mismo es mayor a 0
+     * utilizando el metodo "girar" y "getVel" perteneciente a clase Automovil,
+     * caso contrario no lo permite
+     */
     public void izquierda() {
         if (a.getVel() > 0) {
             giro += 0.002;
@@ -72,18 +96,14 @@ public class InGame extends JPanel implements ActionListener, KeyListener {
 
     }
 
-//    public void pasa_primera(String s) {
-//        switch (s) {
-//            case "[1]Velocidad Maxima: 30" ->
-//                a.maxvelset(3.0);
-//            case "[2]Velocidad Maxima: 50" ->
-//                a.maxvelset(5.0);
-//            case "[3]Velocidad Maxima: 100" ->
-//                a.setVel(10.0);
-//            default ->
-//                a.maxvelset(0.0);
-//        }
-//    }
+    /**
+     * Metodo Override, que contiene el "bucle" de las acciones que tiene el
+     * juego, ya desea dibujado, contador de colisiones, velocidad, contador de
+     * vueltas, etc.
+     *
+     * @param g parametro del tipo Graphics que posibilita el dibujado de los
+     * elementos en pantalla
+     */
     @Override
     public void paint(Graphics g) {
         super.paint(g);
@@ -130,7 +150,7 @@ public class InGame extends JPanel implements ActionListener, KeyListener {
         if (colision.CheckColliderMeta(a, p.Meta()) == false) {
             autoenmeta = false;
         }
-
+        //Dibujado de pista(p) y auto(a)
         p.paint(g);
         a.paint(g);
 
@@ -159,6 +179,7 @@ public class InGame extends JPanel implements ActionListener, KeyListener {
         if (tercera) {
             a.maxvelset(10.0);
         }
+        //Freno constante una vez iniciado el juego
         a.desacelerar();
 
         //Botones del movimiento del auto.
@@ -168,28 +189,33 @@ public class InGame extends JPanel implements ActionListener, KeyListener {
         //Instrucciones del movimiento del auto.
         g.setFont(new Font("Impact", Font.PLAIN, 20));
         g.setColor(Color.BLACK);
-        g.drawString("AVANZAR",320,205);
-        
+        g.drawString("AVANZAR", 320, 205);
+
         g.setFont(new Font("Impact", Font.PLAIN, 20));
         g.setColor(Color.BLACK);
-        g.drawString("FRENAR",320,280);
-        
+        g.drawString("FRENAR", 320, 280);
+
         g.setFont(new Font("Impact", Font.PLAIN, 20));
         g.setColor(Color.BLACK);
-        g.drawString("GIRAR A LA IZQUIERDA",320,350);
-        
+        g.drawString("GIRAR A LA IZQUIERDA", 320, 350);
+
         g.setFont(new Font("Impact", Font.PLAIN, 20));
         g.setColor(Color.BLACK);
-        g.drawString("GIRAR A LA DERECHA",320,425);
+        g.drawString("GIRAR A LA DERECHA", 320, 425);
 
     }
- 
 
     @Override
     public void keyTyped(KeyEvent e) {
     }
-    
-    
+
+    /**
+     * Metodo Override el cual verifica el presionado de teclas que llaman a
+     * distintas funcionalidades segun corresponda
+     *
+     * @param e parametro del tipo KeyEvent con el cual recibe la tecla
+     * presionada
+     */
     @Override
     public void keyPressed(KeyEvent e) {
         switch (e.getKeyCode()) {
@@ -217,19 +243,15 @@ public class InGame extends JPanel implements ActionListener, KeyListener {
                 tercera = true;
                 break;
         }
-//        if (e.getKeyCode() == KeyEvent.VK_1) {
-//            pasa_primera("[1]Velocidad Maxima: 30");
-//        }
-//        if (e.getKeyCode() == KeyEvent.VK_2) {
-//            pasa_primera("[2]Velocidad Maxima: 50");
-//            a.setVel(5.0);
-//        }
-//        if (e.getKeyCode() == KeyEvent.VK_3) {
-//            pasa_primera("[3]Velocidad Maxima: 100");
-//        }
-
     }
 
+    /**
+     * Metodo Override el cual verifica cuando se deja de presionar las teclas
+     * que llaman a distintas funcionalidades segun corresponda
+     *
+     * @param e parametro del tipo KeyEvent con el cual recibe la tecla
+     * presionada
+     */
     @Override
     public void keyReleased(KeyEvent e) {
         a.getR1().resetAnguloGiro();
@@ -258,8 +280,15 @@ public class InGame extends JPanel implements ActionListener, KeyListener {
         }
     }
 
+    /**
+     * Metodo Override el que verificar si estan ocurriendo acciones dentro de
+     * la ventana
+     *
+     * @param e
+     */
     @Override
     public void actionPerformed(ActionEvent e) {
+
         if (a.getX() > 0 && a.getX() < dim.width - 30 && a.getY() > 0 && a.getY() < dim.height - 100) {
             a.acelerar();
         }
