@@ -3,8 +3,14 @@ package Fisicas;
 import java.awt.*;
 
 public class Puntos {
+    /**
+     *
+     * @param ax1, ay1: coordenadas del primer punto
+     * @param bx1, by2: coordenadas del segundo punto
+     * @param p: polygon donde se almacenan todos los puntos en linea recta entre los dos puntos
+     */
     public synchronized static void nueva_linea(Point a, Point b,Polygon p){
-        nueva_linea(a.x,a.y,b.x,b.y,p);
+        nueva_linea(a.x, a.y, b.x, b.y ,p);
     }
     public synchronized static void nueva_linea(int x1,int y1,int x2,int y2,Polygon p){
         int val_y=0;
@@ -29,7 +35,6 @@ public class Puntos {
             else return;
         }
     }
-
     private static void creaLineaX(int ax1,int ay1,int bx1,int by2,int val,Polygon p){
         double m = (((double)by2-(double)ay1))/(((double)bx1-(double)ax1));
         String borrar = Double.toString(m);
