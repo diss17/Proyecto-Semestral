@@ -6,8 +6,8 @@ import java.awt.Rectangle;
 /**
  * Esta clase se encarga de verificar las colisiones del auto con la pista
  *
- * @author Daniel Soto
- * @version final
+ * @author Daniel Soto 
+ * @author Franchesca Mora 
  */
 public class BoxCollider {
     /**

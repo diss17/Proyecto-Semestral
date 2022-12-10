@@ -1,23 +1,35 @@
 package Objetos;
 
-
-
 import java.awt.Color;
 import java.awt.Graphics;
 import java.awt.Point;
 import java.awt.Polygon;
 import Fisicas.Angulos;
-import javax.sound.sampled.Clip;
 
-
+/**
+ * Clase encargada de darle 'vida' a nuestro auto dentro del juego
+ *
+ * @author Daniel Soto
+ * @author Franchesca Mora
+ * @author Gaspar Jimenez
+ */
 public class Automovil {
 
     private double x, y;
     private Color color;
     private Ruedas r1, r2, r3, r4;
     private double vel = 0, maxVel = 0, angulo = 0, dim;
- 
 
+    /**
+     * Constructor que revise diversos parametro con el fin de inicializar las
+     * propiedades del auto, ademas de instanciar las ruedas del auto
+     * pertenencientes a otra clase
+     *
+     * @param x Posicion en x
+     * @param y Posicion en y
+     * @param dim Dimension/tamanho del autoi
+     * @param color Color del auto
+     */
     public Automovil(double x, double y, double dim, Color color) {
         angulo = -0.5;
         this.x = x;
@@ -30,6 +42,11 @@ public class Automovil {
         r4 = new Ruedas();
     }
 
+    /**
+     * Metodo encargado de dibujar todos los elementos que componen al auto
+     *
+     * @param g
+     */
     public void paint(Graphics g) {
         Point or = new Point((int) x, (int) y);
         r1.getCentro(Angulos.generaPunto(or, dim / 67.66, angulo + 0.23));
@@ -136,63 +153,92 @@ public class Automovil {
         g.fillPolygon(foco2);
     }
 
-
+    /**
+     * Metodo encargado de calcular y controlar la velocidad de desplazamiento
+     * del auto
+     */
     public void acelerar() {
-        
+
         double avanzax = Math.sin(angulo * Math.PI), avanzay = Math.cos(angulo * Math.PI);
         if (vel < maxVel) {
-            vel += 0.009;
+            vel += 0.008;
         }
         if (vel > 0) {
             x -= avanzax * vel;
             y -= avanzay * vel;
         }
-        
-        
     }
 
+    /**
+     * Metodo que controla la velocidad de freno cuando es requerido
+     */
     public void desacelerar() {
         if (vel > 0.0) {
-            vel -= 0.006;
+            vel -= 0.003;
         }
     }
 
+    /**
+     * Metodo que recibe un parametro utilizado para settear la velocidad maxima
+     * de nuestro auto
+     *
+     * @param x
+     */
     public void maxvelset(double x) {
         maxVel = x;
     }
 
-    public void velset(double x2) {
-        vel = x2;
-    }
-
-    public void setVel(double vel) {
-        if (this.vel > vel) {
-            this.vel = vel;
-        }
-        maxVel = vel;
-    }
-
+    /**
+     * Metodo utilizado para obtener la velocidad del auto
+     *
+     * @return
+     */
     public double getVel() {
         return vel;
     }
 
+    /**
+     * Metodo que recibe un valor el cual indica el valor de giro en el cual
+     * gira el auto
+     *
+     * @param angulo
+     */
     public void girar(double angulo) {
         this.angulo = angulo;
-
     }
 
+    /**
+     * Metodo que retorna la posicion x de nuestro auto
+     *
+     * @return
+     */
     public double getX() {
         return x;
     }
 
+    /**
+     * Metodo que retorna la posicion y de nuestro auto
+     *
+     * @return
+     */
     public double getY() {
         return y;
     }
 
+    /**
+     * Metodo que rotorna las una de las ruedas delanteras del auto
+     *
+     * @return
+     */
     public Ruedas getR1() {
         return r1;
     }
 
+    /**
+     * Metodo que rotorna las una de las ruedas delanteras del auto
+     *
+     * @return
+     */
     public Ruedas getR2() {
         return r2;
     }

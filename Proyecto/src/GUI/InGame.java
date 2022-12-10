@@ -19,9 +19,9 @@ import javax.swing.Timer;
  * Clase utilizada para controlar y dibujar todo lo que ocurre dentro de nuestro
  * juego
  *
- * @author Franchesca
- * @author Daniel
- * @author Gaspar
+ * @author Franchesca Mora
+ * @author Daniel Soto
+ * @author Gaspar Jimenez
  */
 public class InGame extends JPanel implements ActionListener, KeyListener {
 
@@ -35,14 +35,14 @@ public class InGame extends JPanel implements ActionListener, KeyListener {
     private int cont_colisiones = 0;
     private int cont_vueltas = 0;
     private double giro = 0;
-    boolean autoenmeta, derecha, izquierda, frenar, primera, segunda, tercera;
+    boolean autoenmeta, avanzar, derecha, izquierda, frenar, primera, segunda, tercera;
 
     /**
      * Clase construcor el cual se encarga de inicilizar e instanciar los
      * objetos utilizado dentro de juego
      */
     public InGame() {
-        giro = -0.5; 
+        giro = -0.5;
         t = new Timer(10, null);
         a = new Automovil(inicioX, inicioY, dim.width - 400, Color.RED);
         p = new AutoPista();
@@ -57,6 +57,12 @@ public class InGame extends JPanel implements ActionListener, KeyListener {
      * Metodo de tipo void que es usado para frenar el auto mediante el llamado
      * del metodo "desacelerar", perteneciente a clase Automovil
      */
+    public void avanzar() {
+        a.maxvelset(3.0);
+        a.acelerar();
+        this.repaint();
+    }
+
     public void frenos() {
         a.desacelerar();
         this.repaint();
@@ -156,12 +162,14 @@ public class InGame extends JPanel implements ActionListener, KeyListener {
 
         if (derecha) {
             derecha();
+            frenos();
             a.getR1().rotarDer(0.01);
             a.getR2().rotarDer(0.01);
             this.repaint();
         }
         if (izquierda) {
             izquierda();
+            frenos();
             a.getR1().rotarIzq(0.01);
             a.getR2().rotarIzq(0.01);
             this.repaint();
@@ -179,8 +187,6 @@ public class InGame extends JPanel implements ActionListener, KeyListener {
         if (tercera) {
             a.maxvelset(10.0);
         }
-        //Freno constante una vez iniciado el juego
-        a.desacelerar();
 
         //Botones del movimiento del auto.
         ImageIcon botones = new ImageIcon("fondo_buttons.jpeg");
@@ -219,29 +225,21 @@ public class InGame extends JPanel implements ActionListener, KeyListener {
     @Override
     public void keyPressed(KeyEvent e) {
         switch (e.getKeyCode()) {
-            case KeyEvent.VK_RIGHT:
+            case KeyEvent.VK_RIGHT ->
                 derecha = true;
-                break;
-            case KeyEvent.VK_LEFT:
+            case KeyEvent.VK_LEFT ->
                 izquierda = true;
-                break;
-            case KeyEvent.VK_DOWN:
+            case KeyEvent.VK_UP -> {
+                avanzar();
+            }
+            case KeyEvent.VK_DOWN ->
                 frenar = true;
-                break;
-            case KeyEvent.VK_UP:
-                a.maxvelset(3.0);
-                a.acelerar();
-                this.repaint();
-                break;
-            case KeyEvent.VK_1:
+            case KeyEvent.VK_1 ->
                 primera = true;
-                break;
-            case KeyEvent.VK_2:
+            case KeyEvent.VK_2 ->
                 segunda = true;
-                break;
-            case KeyEvent.VK_3:
+            case KeyEvent.VK_3 ->
                 tercera = true;
-                break;
         }
     }
 
@@ -258,25 +256,18 @@ public class InGame extends JPanel implements ActionListener, KeyListener {
         a.getR2().resetAnguloGiro();
         this.repaint();
         switch (e.getKeyCode()) {
-            case KeyEvent.VK_RIGHT:
+            case KeyEvent.VK_RIGHT ->
                 derecha = false;
-                break;
-            case KeyEvent.VK_LEFT:
+            case KeyEvent.VK_LEFT ->
                 izquierda = false;
-                break;
-            case KeyEvent.VK_DOWN:
+            case KeyEvent.VK_DOWN ->
                 frenar = false;
-                frenos();
-                break;
-            case KeyEvent.VK_1:
+            case KeyEvent.VK_1 ->
                 primera = false;
-                break;
-            case KeyEvent.VK_2:
+            case KeyEvent.VK_2 ->
                 segunda = false;
-                break;
-            case KeyEvent.VK_3:
+            case KeyEvent.VK_3 ->
                 tercera = false;
-                break;
         }
     }
 

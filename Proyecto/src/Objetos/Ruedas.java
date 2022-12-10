@@ -4,6 +4,13 @@ import Fisicas.Angulos;
 
 import java.awt.*;
 
+/**
+ * Clase encargada de crear las ruedas de nuestro auto
+ *
+ * @author Franchesca Mora
+ * @author Gaspar Jimenez
+ * @author Daniel Soto
+ */
 public class Ruedas {
 
     private double x, y;
@@ -12,10 +19,18 @@ public class Ruedas {
 
     Polygon rueda;
 
+    /**
+     * Constructor vacio
+     */
     public Ruedas() {
 
     }
 
+    /**
+     * Meotodo utilizado para pintar/dibujas los componentes de las ruedas
+     *
+     * @param g
+     */
     public void paint(Graphics g) {
 
         g.setColor(Color.BLACK);
@@ -33,32 +48,66 @@ public class Ruedas {
         g.fillPolygon(rueda);
     }
 
+    /**
+     * Metodo encargado de settear las propiedades de las ruedas mediante
+     * distintos parametros
+     *
+     * @param x Coordenada x
+     * @param y Coordenad Y
+     * @param dim Dimension de las ruedas
+     */
     public void setXY(double x, double y, double dim) {
         this.x = x;
         this.y = y;
         this.dim = dim;
     }
 
+    /**
+     * Metodo que recibe un parametro el cual inicializa el angulo de las ruedas
+     *
+     * @param angulo
+     */
     public void setAngulo(double angulo) {
         this.angulo = angulo;
     }
 
+    /**
+     * Metodo encargado de retonar el centro entre las 4 ruedas
+     *
+     * @param centro
+     */
     public void getCentro(Point centro) {
         this.centro = centro;
     }
 
+    /**
+     * Metodo que se encarga de rotar las ruedas hacia la izquierda segun
+     * corresponda
+     *
+     * @param angulo
+     */
     public void rotarIzq(double angulo) {
         if (anguloGiro < 0.15) {
             anguloGiro += angulo;
         }
     }
 
+    /**
+     * Metodo que se encarga de rotar las ruedas hacia la derecha segun
+     * corresponda
+     *
+     * @param angulo
+     */
     public void rotarDer(double angulo) {
         if (anguloGiro > -0.15) {
             anguloGiro -= angulo;
         }
     }
 
+    /**
+     * Metodo el cual se encarga de devolver a 0 el giro de las ruedas, segun
+     * sea necesario
+     */
     public void resetAnguloGiro() {
         anguloGiro = 0;
     }

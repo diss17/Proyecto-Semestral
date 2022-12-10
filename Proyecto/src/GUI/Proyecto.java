@@ -1,7 +1,7 @@
 package GUI;
 /**
  * Clase main que instancia la ventana de nuestro programa.
- * @author Daniel
+ * @author Daniel Soto
  */
 public class Proyecto {
 

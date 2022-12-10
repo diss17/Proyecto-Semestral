@@ -5,9 +5,9 @@ import javax.swing.*;
 /**
  * Clase que crea y da propiedades a la ventana principal
  *
- * @author Gaspar
- * @author Franchesca
- * @author Daniel
+ * @author Gaspar Jimenez
+ * @author Franchesca Mora
+ * @author Daniel Soto
  */
 public class Ventana extends JFrame {
 

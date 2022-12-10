@@ -2,6 +2,13 @@ package Objetos;
 
 import java.awt.*;
 
+/**
+ * Clase encargada de inicializar los elementos que componen la pista
+ *
+ * @author Daniel Soto
+ * @author Franchesca Mora
+ * @author Gaspar Jimenez
+ */
 public class AutoPista {
 
     Rectangle l1 = new Rectangle();
@@ -9,6 +16,10 @@ public class AutoPista {
     Rectangle meta = new Rectangle();
     Rectangle salida = new Rectangle();
 
+    /**
+     * Constructor de clase encargado de inicializar las dimensiones de nuestra
+     * pista
+     */
     public AutoPista() {
         l1.x = 50;
         l1.y = 40;
@@ -31,6 +42,11 @@ public class AutoPista {
         salida.height = 75;
     }
 
+    /**
+     * Metodo utilizado para pintar/dibujar los elementos de la pista
+     *
+     * @param g
+     */
     public void paint(Graphics g) {
         //PAINT CARRETERA.
         //Carretera RECTAS
@@ -53,14 +69,33 @@ public class AutoPista {
 
     }
 
+    /**
+     * Metodo auxliar que devuelve las propiedades del rectangulo exterior de la
+     * pista, con el fin de conformar las colisiones
+     *
+     * @return l1;
+     */
     public Rectangle Exterior() {
         return l1;
     }
 
+    /**
+     * Metodo auxliar que devuelve las propiedades del rectangulo interior de la
+     * pista, con el fin de conformar las colisiones
+     *
+     * @return l2;
+     */
     public Rectangle Interior() {
         return l2;
     }
-    public Rectangle Meta(){
+
+    /**
+     * Metodo auxliar que devuelve las propiedades del rectangulo que simula la meta de la
+     * pista, con el fin de conformar las colisiones
+     *
+     * @return meta;
+     */
+    public Rectangle Meta() {
         return meta;
     }
 }

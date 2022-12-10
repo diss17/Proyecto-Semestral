@@ -15,7 +15,17 @@ import javax.swing.border.LineBorder;
 import javax.sound.sampled.AudioSystem;
 import javax.sound.sampled.Clip;
 import java.io.File;
+import java.io.IOException;
+import javax.sound.sampled.LineUnavailableException;
+import javax.sound.sampled.UnsupportedAudioFileException;
 
+/**
+ * Clase encargada de crear el menu de nuestro juego
+ *
+ * @author Gaspar Jimenez
+ * @author Franchesca Mora
+ * @author Daniel Soto
+ */
 public class MenuStatus extends JPanel implements ActionListener {
 
     JPanel panel, menu;
@@ -27,6 +37,12 @@ public class MenuStatus extends JPanel implements ActionListener {
     public static Clip musicMenu;
     public static Clip musicGame;
 
+    /**
+     * Constructor que recibe un JFrame el cual da "vida" a nuestra ventana,
+     * ademas inicializa los componentes de nuestro menu
+     *
+     * @param ventana
+     */
     public MenuStatus(JFrame ventana) {
         this.ventana = ventana;
         IniciarPaneles();
@@ -38,6 +54,10 @@ public class MenuStatus extends JPanel implements ActionListener {
 
     }
 
+    /**
+     * Metodo private el cual inicializada nuestros paneles que contienen el
+     * menu y juego
+     */
     private void IniciarPaneles() {
         panel = new JPanel();
         menu = new JPanel();
@@ -49,6 +69,9 @@ public class MenuStatus extends JPanel implements ActionListener {
 
     }
 
+    /**
+     * Metodo private que crea los botones del menu
+     */
     private void botonesMenu() {
 
         //BOTON-PLAY
@@ -81,6 +104,9 @@ public class MenuStatus extends JPanel implements ActionListener {
         menu.add(Salir);
     }
 
+    /**
+     * Metodo private que se encarga de crear la parte grafica del menu
+     */
     private void fondoMenu() {
         titulo = new JLabel();
         titulo.setBounds(450, 250, 400, 40);
@@ -100,6 +126,10 @@ public class MenuStatus extends JPanel implements ActionListener {
 
     }
 
+    /**
+     * Metodo private que se encarga de settear la musica del menu y juego, el
+     * cual en caso de fallar lanza una exception
+     */
     private void musicInGame() {
         try {
             musicMenu = AudioSystem.getClip();
@@ -109,12 +139,17 @@ public class MenuStatus extends JPanel implements ActionListener {
             musicGame = AudioSystem.getClip();
             musicGame.open(AudioSystem.getAudioInputStream(new File("NFS_InGame.wav")));
 
-        } catch (Exception e) {
-            System.out.println("Audio malo" + e);
+        } catch (IOException | LineUnavailableException | UnsupportedAudioFileException e) {
+            System.out.println("Error al lanzar audio" + e);
         }
 
     }
 
+    /**
+     * Metodo encargado de controlar las acciones recibidas por el mouse
+     *
+     * @param e
+     */
     @Override
     public void actionPerformed(ActionEvent e) {
         if (e.getSource() == Iniciar) {
