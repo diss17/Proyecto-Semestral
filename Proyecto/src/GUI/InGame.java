@@ -192,6 +192,9 @@ public class InGame extends JPanel implements ActionListener, KeyListener {
         ImageIcon botones = new ImageIcon("fondo_buttons.jpeg");
         g.drawImage(botones.getImage(), 200, 140, 160, 340, null);
 
+        ImageIcon botones_aceleracion = new ImageIcon("buttons_acele.jpeg");
+        g.drawImage(botones_aceleracion.getImage(), 570, 155, 90, 230, null);
+
         //Instrucciones del movimiento del auto.
         g.setFont(new Font("Impact", Font.PLAIN, 20));
         g.setColor(Color.BLACK);
@@ -208,6 +211,20 @@ public class InGame extends JPanel implements ActionListener, KeyListener {
         g.setFont(new Font("Impact", Font.PLAIN, 20));
         g.setColor(Color.BLACK);
         g.drawString("GIRAR A LA DERECHA", 320, 425);
+
+        //Instrucciones de la aceleración del auto.
+        g.setFont(new Font("Impact", Font.PLAIN, 20));
+        g.setColor(Color.BLACK);
+        g.drawString("0 a 30 KM/H", 650, 205);
+
+        g.setFont(new Font("Impact", Font.PLAIN, 20));
+        g.setColor(Color.BLACK);
+        g.drawString("30 a 50 KM/H", 650, 276);
+
+        g.setFont(new Font("Impact", Font.PLAIN, 20));
+        g.setColor(Color.BLACK);
+        g.drawString("50 a 100 KM/H", 650, 345);
+
     }
 
     @Override
