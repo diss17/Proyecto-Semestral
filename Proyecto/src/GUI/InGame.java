@@ -208,7 +208,6 @@ public class InGame extends JPanel implements ActionListener, KeyListener {
         g.setFont(new Font("Impact", Font.PLAIN, 20));
         g.setColor(Color.BLACK);
         g.drawString("GIRAR A LA DERECHA", 320, 425);
-
     }
 
     @Override

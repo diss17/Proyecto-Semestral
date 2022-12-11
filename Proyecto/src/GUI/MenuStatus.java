@@ -16,6 +16,7 @@ import javax.sound.sampled.AudioSystem;
 import javax.sound.sampled.Clip;
 import java.io.File;
 import java.io.IOException;
+import javax.sound.sampled.FloatControl;
 import javax.sound.sampled.LineUnavailableException;
 import javax.sound.sampled.UnsupportedAudioFileException;
 
@@ -135,9 +136,11 @@ public class MenuStatus extends JPanel implements ActionListener {
             musicMenu = AudioSystem.getClip();
             musicMenu.open(AudioSystem.getAudioInputStream(new File("GTA_Menu(1).wav")));
             musicMenu.loop(-1);
+            setVolumeMenu(0.02f);
 
             musicGame = AudioSystem.getClip();
             musicGame.open(AudioSystem.getAudioInputStream(new File("NFS_InGame.wav")));
+            setVolumeGame(0.02f);
 
         } catch (IOException | LineUnavailableException | UnsupportedAudioFileException e) {
             System.out.println("Error al lanzar audio" + e);
@@ -158,6 +161,7 @@ public class MenuStatus extends JPanel implements ActionListener {
             c.show(panel, "2");
             juego.requestFocus();
             juego.setVisible(true);
+
             musicMenu.stop();
             musicGame.setMicrosecondPosition(0);
             musicGame.loop(-1);
@@ -166,6 +170,48 @@ public class MenuStatus extends JPanel implements ActionListener {
         if (e.getSource() == Salir) {
             System.exit(0);
         }
+
+    }
+    /**
+     * Metodo getter que se usa para obtener el volumen de la musica del menu con el fin de controlarla
+     * @return 
+     */
+    public float getVolumeMenu() {
+        FloatControl gainControl = (FloatControl) musicMenu.getControl(FloatControl.Type.MASTER_GAIN);
+        return (float) Math.pow(10f, gainControl.getValue() / 20f);
+    }
+    /**
+     * Metodo usado para settear el volume a gusto en el menu
+     * @param volume 
+     */
+    public void setVolumeMenu(float volume) {
+
+        if (volume < 0f || volume > 1f) {
+            throw new IllegalArgumentException("Volume not valid: " + volume);
+        }
+        FloatControl gainControl = (FloatControl) musicMenu.getControl(FloatControl.Type.MASTER_GAIN);
+        gainControl.setValue(20f * (float) Math.log10(volume));
+
+    }
+    /**
+     * Metodo getter usado para obtener el valor de volumen dentro del juego
+     * @return 
+     */
+    public float getVolumeGame() {
+        FloatControl gainControl = (FloatControl) musicGame.getControl(FloatControl.Type.MASTER_GAIN);
+        return (float) Math.pow(10f, gainControl.getValue() / 20f);
+    }
+    /**
+     * Metodo que settea el volumen a gusto dentro del juego
+     * @param volume 
+     */
+    public void setVolumeGame(float volume) {
+
+        if (volume < 0f || volume > 1f) {
+            throw new IllegalArgumentException("Volume not valid: " + volume);
+        }
+        FloatControl gainControl = (FloatControl) musicGame.getControl(FloatControl.Type.MASTER_GAIN);
+        gainControl.setValue(20f * (float) Math.log10(volume));
 
     }
 }
