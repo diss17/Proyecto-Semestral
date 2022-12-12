@@ -25,6 +25,9 @@ import javax.swing.Timer;
  */
 public class InGame extends JPanel implements ActionListener, KeyListener {
 
+    /**
+     *Dimension de la ventana
+     */
     public Dimension dim = new Dimension(1200, 700);
     BoxCollider colision = new BoxCollider();
     private Timer t;
@@ -62,7 +65,9 @@ public class InGame extends JPanel implements ActionListener, KeyListener {
         a.acelerar();
         this.repaint();
     }
-
+    /**
+     * Metodo void que es usado para frener el auto con el metodo desacelerar de la clase automovil
+     */
     public void frenos() {
         a.desacelerar();
         this.repaint();

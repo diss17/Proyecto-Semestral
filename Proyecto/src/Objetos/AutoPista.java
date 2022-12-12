@@ -70,7 +70,7 @@ public class AutoPista {
     }
 
     /**
-     * Metodo auxliar que devuelve las propiedades del rectangulo exterior de la
+     * Metodo auxiliar que devuelve las propiedades del rectangulo exterior de la
      * pista, con el fin de conformar las colisiones
      *
      * @return l1;
@@ -80,7 +80,7 @@ public class AutoPista {
     }
 
     /**
-     * Metodo auxliar que devuelve las propiedades del rectangulo interior de la
+     * Metodo auxiliar que devuelve las propiedades del rectangulo interior de la
      * pista, con el fin de conformar las colisiones
      *
      * @return l2;
@@ -90,7 +90,7 @@ public class AutoPista {
     }
 
     /**
-     * Metodo auxliar que devuelve las propiedades del rectangulo que simula la meta de la
+     * Metodo auxiliar que devuelve las propiedades del rectangulo que simula la meta de la
      * pista, con el fin de conformar las colisiones
      *
      * @return meta;

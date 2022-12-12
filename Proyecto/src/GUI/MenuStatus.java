@@ -140,7 +140,7 @@ public class MenuStatus extends JPanel implements ActionListener {
 
             musicGame = AudioSystem.getClip();
             musicGame.open(AudioSystem.getAudioInputStream(new File("NFS_InGame.wav")));
-            setVolumeGame(0.02f);
+            setVolumeGame(0.015f);
 
         } catch (IOException | LineUnavailableException | UnsupportedAudioFileException e) {
             System.out.println("Error al lanzar audio" + e);

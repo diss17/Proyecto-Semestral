@@ -10,7 +10,9 @@ import javax.swing.*;
  * @author Daniel Soto
  */
 public class Ventana extends JFrame {
-
+    /**
+     * Metodo constructor que incializa las propiedades de nuestra ventana
+     */
     public Ventana() {
         MenuStatus m = new MenuStatus(this);
         this.setTitle("Simulación Auto");

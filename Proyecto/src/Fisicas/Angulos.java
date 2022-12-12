@@ -38,7 +38,14 @@ public class Angulos {
         angulo = (float) Math.atan2(-(double) alto, (double) ancho);
         return (angulo / (float) Math.PI);
     }
-
+    /**
+     * 
+     * @param x1
+     * @param y1
+     * @param x2
+     * @param y2
+     * @return 
+     */
     public static float get_PI(int x1, int y1, int x2, int y2) {
         return get_PI(new Point(x1, y1), new Point(x2, y2));
     }
